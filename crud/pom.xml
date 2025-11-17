@@ -29,5 +29,19 @@
       <version>23.5.0.24.07</version>
     </dependency>
 
+      <!-- HIBERNATE (El traductor ORM/JPA) -->
+      <dependency>
+          <groupId>org.hibernate.orm</groupId>
+          <artifactId>hibernate-core</artifactId>
+          <version>6.4.4.Final</version>
+      </dependency>
+
+      <!-- LIBRERÍA AUXILIAR (Requerida por Hibernate 6+) -->
+      <dependency>
+          <groupId>org.glassfish.jaxb</groupId>
+          <artifactId>jaxb-runtime</artifactId>
+          <version>4.0.5</version>
+      </dependency>
+
   </dependencies>
 </project>
