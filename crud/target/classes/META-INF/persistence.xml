@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="https://jakarta.ee/xml/ns/persistence"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
@@ -7,22 +8,26 @@
     <persistence-unit name="oracle-pu" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-        <!-- Le decimos a Hibernate cuál es nuestra clase de Entidad -->
-        <class>com.crud.app.Usuario</class>
+        <!-- Entidades para los ejemplos de Oracle -->
+        <class>com.crud.app.oracle.model.Empleado</class>
+        <class>com.crud.app.oracle.model.Producto</class>
+        <class>com.crud.app.oracle.model.Persona</class>
+        <class>com.crud.app.oracle.model.Estudiante</class>
 
         <properties>
-            <!-- Conexión (Tu docker-compose) -->
+            <!-- Conexión Oracle -->
             <property name="jakarta.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver"/>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521/FREEPDB1"/>
             <property name="jakarta.persistence.jdbc.user" value="appuser"/>
             <property name="jakarta.persistence.jdbc.password" value="appuser123"/>
 
-            <!-- El "Traductor" específico para Oracle -->
+            <!-- Dialecto Oracle -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.OracleDialect"/>
 
-            <!-- MAGIA: Crea o actualiza la tabla automáticamente basado en la clase Usuario.java -->
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
-            <property name="hibernate.show_sql" value="true"/> <!-- Muestra el SQL en la consola (útil) -->
+            <!-- NO crear tablas automáticamente (usamos los SQL proporcionados) -->
+            <property name="hibernate.hbm2ddl.auto" value="none"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
         </properties>
     </persistence-unit>
 
@@ -30,20 +35,28 @@
     <persistence-unit name="postgres-pu" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-        <class>com.crud.app.Usuario</class>
+        <!-- Entidades para los ejemplos de PostgreSQL -->
+        <class>com.crud.app.postgresql.model.Empleado</class>
+        <class>com.crud.app.postgresql.model.ProductoCompuesto</class>
+        <class>com.crud.app.postgresql.model.Proyecto</class>
+        <class>com.crud.app.postgresql.model.ProductoTech</class>
+        <class>com.crud.app.postgresql.model.Persona</class>
+        <class>com.crud.app.postgresql.model.Estudiante</class>
 
         <properties>
-            <!-- Conexión (Tu docker-compose) -->
+            <!-- Conexión PostgreSQL -->
             <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/testdb"/>
             <property name="jakarta.persistence.jdbc.user" value="admin"/>
             <property name="jakarta.persistence.jdbc.password" value="admin123"/>
 
-            <!-- El "Traductor" específico para Postgres -->
+            <!-- Dialecto PostgreSQL -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
 
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <!-- NO crear tablas automáticamente -->
+            <property name="hibernate.hbm2ddl.auto" value="none"/>
             <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
         </properties>
     </persistence-unit>
 
